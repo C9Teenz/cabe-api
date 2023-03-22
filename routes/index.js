@@ -7,6 +7,8 @@ route.get("/", (req, res) => {
 });
 const userRoute = require("./user");
 const categoryRoute = require("./category");
+const chiliRoute = require("./chili");
 route.use("/user", userRoute);
 route.use("/categories", categoryRoute);
+route.use("/chilies", chiliRoute);
 module.exports = route;
