@@ -25,10 +25,7 @@ class CategoryController {
     try {
       const id = +req.params.id;
       const { name } = req.body;
-      const findOne = await Category.update(
-        { where: { id: id } },
-        { name: name }
-      );
+      const findOne = await Category.update({ name }, { where: { id: id } });
       if (findOne == 1) {
         res.status(200).json({ message: "Category has been updated" });
       } else {
