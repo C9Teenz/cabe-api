@@ -7,4 +7,6 @@ const upload = multer({ dest: "uploads/" });
 
 chiliRoute.post("/create", upload.single("image"), ChiliController.create);
 chiliRoute.get("/", ChiliController.get);
+chiliRoute.get("/delete/:id", ChiliController.delete);
+chiliRoute.put("/edit/:id", ChiliController.edit);
 module.exports = chiliRoute;

@@ -34,5 +34,34 @@ class ChiliController {
       res.status(400).json(error);
     }
   }
+  static async delete(req, res) {
+    try {
+      const id = +req.params.id;
+      const result = await Chili.destroy({ where: { id: id } });
+      res.status(200).json({ message: `data with id ${id} has been deleted` });
+    } catch (error) {
+      res.json(error);
+    }
+  }
+  static async edit(req, res) {
+    try {
+      const id = +req.params.id;
+      const { name, categoryId, description, image } = req.body;
+      const updateData = { name, categoryId, description };
+      if (req.file) {
+        updateData.image = req.file.path;
+      } else if (image) {
+        updateData.image = image;
+      }
+      const result = await Chili.update(updateData, { where: { id: id } });
+      if (result == 1) {
+        res.status(200).json({ message: "Chili has been updated" });
+      } else {
+        res.status(500).json({ message: "Chili failed to update" });
+      }
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
 }
 module.exports = ChiliController;
