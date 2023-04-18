@@ -3,11 +3,20 @@ const { Chili, Category } = require("../models");
 class ChiliController {
   static async create(req, res) {
     try {
-      const { name, categoryId, description, image } = req.body;
+      const {
+        name,
+        categoryId,
+        description,
+        image,
+        shu,
+        scientificName,
+      } = req.body;
       const createData = {
         name,
         categoryId,
         description,
+        shu,
+        scientificName,
       };
       if (req.file) {
         createData.image = req.file.path;
@@ -46,8 +55,15 @@ class ChiliController {
   static async edit(req, res) {
     try {
       const id = +req.params.id;
-      const { name, categoryId, description, image } = req.body;
-      const updateData = { name, categoryId, description };
+      const {
+        name,
+        categoryId,
+        description,
+        image,
+        shu,
+        scientificName,
+      } = req.body;
+      const updateData = { name, categoryId, description, shu, scientificName };
       if (req.file) {
         updateData.image = req.file.path;
       } else if (image) {

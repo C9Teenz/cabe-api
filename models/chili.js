@@ -18,7 +18,9 @@ module.exports = (sequelize, DataTypes) => {
   Chili.init(
     {
       name: DataTypes.STRING,
+      scientificName: DataTypes.STRING,
       categoryId: DataTypes.INTEGER,
+      shu: DataTypes.BIGINT,
       image: DataTypes.STRING,
       description: DataTypes.STRING,
     },
