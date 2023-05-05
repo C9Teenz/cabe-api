@@ -19,7 +19,9 @@ class ChiliController {
         scientificName,
       };
       if (req.file) {
-        createData.image = req.file.path;
+        createData.image = `${req.protocol}://${req.get("host")}/uploads/${
+          req.file.filename
+        }`;
       } else {
         createData.image = image;
       }
@@ -65,7 +67,9 @@ class ChiliController {
       } = req.body;
       const updateData = { name, categoryId, description, shu, scientificName };
       if (req.file) {
-        updateData.image = req.file.path;
+        updateData.image = `${req.protocol}://${req.get("host")}/uploads/${
+          req.file.filename
+        }`;
       } else if (image) {
         updateData.image = image;
       }
